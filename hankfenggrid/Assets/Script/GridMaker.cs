@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridMaker : MonoBehaviour
 {  
@@ -25,8 +26,30 @@ public class GridMaker : MonoBehaviour
     int score;
     public Text scoreText;
 
+    float timer = 10;
+    public Text timeText;
 
-    
+
+    public int combo = 0;
+
+
+    public AudioClip combo1;
+    public AudioClip combo2;
+    public AudioClip combo3;
+    public AudioClip combo4;
+    public AudioClip combo5;
+    public AudioClip combo6;
+
+    public Text comboText;
+
+
+
+
+
+
+
+
+
 
 
     public static float slideLerp = -1;
@@ -78,7 +101,7 @@ public class GridMaker : MonoBehaviour
 
 
                     Tiles tileScript = newTile.GetComponent<Tiles>();
-                    tileScript.SetType(Random.Range(0, tileScript.tileColors.Length));
+                    tileScript.SetType(Random.Range(0, tileScript.tileSprites.Length));
                     
 
                 }
@@ -95,14 +118,22 @@ public class GridMaker : MonoBehaviour
         }
 
 
+      
+
+
+      
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("" + combo);
 
         scoreText.text = "SCORE:" + score;
+        timeText.text = "" + timer;
+        comboText.text = "COMBO x " + combo ;
 
 
 
@@ -123,6 +154,17 @@ public class GridMaker : MonoBehaviour
             } 
         }
 
+        //if timer runs out gameover
+        timer -= Time.deltaTime;
+        //round to 2 decimal
+        timer = Mathf.Round(timer * 100f) / 100f;
+        if (timer < 0)
+        {
+            SceneManager.LoadScene("End");
+        }
+
+
+        
         
 
 
@@ -144,8 +186,11 @@ public class GridMaker : MonoBehaviour
                        
 
                         return tileScript;
-                    }
-                    if (y < HEIGHT - 2 && tileScript.isMatch(tiles[x, y + 1], tiles[x, y + 2]))
+                       
+                            
+
+                        }
+                        if (y < HEIGHT - 2 && tileScript.isMatch(tiles[x, y + 1], tiles[x, y + 2]))
                     {
                        
 
@@ -166,14 +211,14 @@ public class GridMaker : MonoBehaviour
                 Tiles tileScript = tiles[x, y].GetComponent<Tiles>();
 
                 if (tileScript != null)
-                {//set to another random color if matched
+                {//set to another random sprite if matched
                     if (x < WIDTH - 2 && tileScript.isMatch(tiles[x + 1, y], tiles[x + 2, y]))
                     {
-                        tileScript.SetType(Random.Range(0, tileScript.tileColors.Length));
+                        tileScript.SetType(Random.Range(0, tileScript.tileSprites.Length));
                     }
                     if (y < HEIGHT - 2 && tileScript.isMatch(tiles[x, y + 1], tiles[x, y + 2]))
                     {
-                        tileScript.SetType(Random.Range(0, tileScript.tileColors.Length));
+                        tileScript.SetType(Random.Range(0, tileScript.tileSprites.Length));
                     }
                 }
             }
@@ -197,10 +242,43 @@ public class GridMaker : MonoBehaviour
                         Instantiate(particles, tiles[x+2, y].transform.position, Quaternion.identity);
 
                         score += 3;
+                        timer = 10;
 
                         Destroy(tiles[x, y]);
                         Destroy(tiles[x + 1, y]);
                         Destroy(tiles[x + 2, y]);
+
+                        combo += 1;
+
+                        if (combo == 1)
+                        {
+                            AudioSource.PlayClipAtPoint(combo1, new Vector3(0, 0, -10));//keep audio close so its loud
+                        }
+                        else if (combo == 2)
+                        {
+                            AudioSource.PlayClipAtPoint(combo2, new Vector3(0, 0, -10));
+                        }
+                        else if (combo == 3)
+                        {
+                            AudioSource.PlayClipAtPoint(combo3, new Vector3(0, 0, -10));
+                        }
+                        else if (combo == 4)
+                        {
+                            AudioSource.PlayClipAtPoint(combo4, new Vector3(0, 0, -10));
+
+                        }
+                        else if (combo == 5)
+                        {
+                            AudioSource.PlayClipAtPoint(combo5, new Vector3(0, 0, -10));
+                        }
+                        else if (combo >= 6)
+                        {
+                            AudioSource.PlayClipAtPoint(combo6, new Vector3(0, 0, -10));
+                        }
+
+
+
+
 
                     }
                     if (y < HEIGHT - 2 && tileScript.isMatch(tiles[x, y + 1], tiles[x, y + 2]))
@@ -210,10 +288,43 @@ public class GridMaker : MonoBehaviour
                         Instantiate(particles, tiles[x, y + 2].transform.position, Quaternion.identity);
 
                         score += 3;
+                        timer = 10;
 
                         Destroy(tiles[x, y]);
                         Destroy(tiles[x, y + 1]);
                         Destroy(tiles[x, y + 2]);
+
+
+                        combo += 1;
+
+                        if (combo == 1)
+                        {
+                            AudioSource.PlayClipAtPoint(combo1, new Vector3(0, 0, -10));//keep audio close so its loud
+                        }
+                        else if (combo == 2)
+                        {
+                            AudioSource.PlayClipAtPoint(combo2, new Vector3(0, 0, -10));
+                        }
+                        else if (combo == 3)
+                        {
+                            AudioSource.PlayClipAtPoint(combo3, new Vector3(0, 0, -10));
+                        }
+                        else if (combo == 4)
+                        {
+                            AudioSource.PlayClipAtPoint(combo4, new Vector3(0, 0, -10));
+
+                        }
+                        else if (combo == 5)
+                        {
+                            AudioSource.PlayClipAtPoint(combo5, new Vector3(0, 0, -10));
+                        }
+                        else if (combo >= 6)
+                        {
+                            AudioSource.PlayClipAtPoint(combo6, new Vector3(0, 0, -10));
+                        }
+
+
+
 
                     }
                 }
@@ -241,12 +352,13 @@ public class GridMaker : MonoBehaviour
 
                         Tiles tileScript = tiles[x, y].GetComponent<Tiles>();
 
-                        tileScript.SetType(Random.Range(0, tileScript.tileColors.Length));
+                        tileScript.SetType(Random.Range(0, tileScript.tileSprites.Length));
 
                         tiles[x, y].transform.parent = gridHolder.transform;
 
                         tiles[x, y].transform.localPosition = new Vector2(WIDTH - x - xOffset,HEIGHT - y - yOffset);
 
+                        
                         
 
                     }
@@ -277,6 +389,8 @@ public class GridMaker : MonoBehaviour
         return repop;
     }
 
+
+   
 
 
 }

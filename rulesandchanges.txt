@@ -1,0 +1,9 @@
+
+1.Added 10 second timer to give pressure
+
+2.Reduced moves to 5
+
+3.Added Combo counter and sound effect
+
+4.Added sound effect for moving and sprites according to a fruit theme
+

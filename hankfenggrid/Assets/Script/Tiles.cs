@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,8 @@ public class Tiles : MonoBehaviour
 {
 
     public int type;
-    public Color[] tileColors;
+    //public Color[] tileColors;
+    public Sprite[] tileSprites;
 
     public bool inSlide = false;
 
@@ -51,10 +52,13 @@ public class Tiles : MonoBehaviour
     {
         type = i;
 
-        GetComponent<SpriteRenderer>().color = tileColors[type];
+       // GetComponent<SpriteRenderer>().color = tileColors[type];
+        GetComponent<SpriteRenderer>().sprite = tileSprites[type];
 
-        
+
     }
+
+    
         
     public bool isMatch(GameObject gameObject1, GameObject gameObject2)
     {

@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  tileColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.41639185, b: 1, a: 1}
-  - {r: 0.37885177, g: 1, b: 0, a: 1}
-  - {r: 0.8509927, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0.88550174, b: 0, a: 1}
+  tileSprites:
+  - {fileID: 21300000, guid: c2cf79a1df4f8d34d99e94883f9c0a56, type: 3}
+  - {fileID: 21300000, guid: 096cfa36416e42e4b972e61280188aaf, type: 3}
+  - {fileID: 21300000, guid: 805f100fbadb8e345a5b7dd3d393d699, type: 3}
+  - {fileID: 21300000, guid: bde70814227c97a47a6e93ced8df22a9, type: 3}
+  - {fileID: 21300000, guid: ec4222a4a8fba584da5ee029c1ed1294, type: 3}
   inSlide: 0
   startPosition: {x: 0, y: 0, z: 0}
   destPosition: {x: 0, y: 0, z: 0}

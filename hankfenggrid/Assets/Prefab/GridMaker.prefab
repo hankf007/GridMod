@@ -49,5 +49,13 @@ MonoBehaviour:
     type: 3}
   playerLocation: {x: 0, y: 0}
   scoreText: {fileID: 0}
+  timeText: {fileID: 0}
+  combo: 0
+  combo1: {fileID: 8300000, guid: b0475ae9310a7b7409c2b93013f50aa8, type: 3}
+  combo2: {fileID: 8300000, guid: 031da83a36b6bda489301d96b7ab7b6e, type: 3}
+  combo3: {fileID: 8300000, guid: 2f9d67e52ed04084b81a3609dc442944, type: 3}
+  combo4: {fileID: 8300000, guid: 143dbb40b94df394b87e318532587f23, type: 3}
+  combo5: {fileID: 8300000, guid: 2698510247cbe594a87f1612fa3234ed, type: 3}
+  combo6: {fileID: 8300000, guid: b686b1f4b7cc2e040906fa285194c358, type: 3}
   lerpSpeed: 0.25
   particles: {fileID: 0}
